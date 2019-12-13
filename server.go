@@ -16,7 +16,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/elazarl/go-bindata-assetfs"
+	assetfs "github.com/elazarl/go-bindata-assetfs"
 	"github.com/google/nftables"
 	"github.com/google/nftables/expr"
 	"github.com/julienschmidt/httprouter"
