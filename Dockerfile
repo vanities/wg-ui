@@ -1,4 +1,6 @@
-FROM docker.io/golang:1.13 AS build
+FROM golang:alpine AS build
+#FROM arm32v7/golang as build
+RUN apk update && apk add git
 WORKDIR /wg
 RUN go get github.com/go-bindata/go-bindata/... &&\
     go get github.com/elazarl/go-bindata-assetfs/...

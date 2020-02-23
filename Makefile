@@ -1,4 +1,8 @@
-.PHONY: binary container ui
+IMAGE_NAME ?= vanities/wireguard-ui
+IMAGE_VERSION ?= latest
+DOCKER_TAG := $(IMAGE_NAME):$(IMAGE_VERSION)
+
+.PHONY: binary container release ui
 
 binary: go-binary ui
 
@@ -10,7 +14,10 @@ ui:
 	cd ui && npm install && npm run build
 
 container:
-	docker build -t wireguard-ui .
+	docker build --tag $(DOCKER_TAG) .
+
+release: container
+	docker push $(DOCKER_TAG)
 
 run-dev: go-binary
 	sudo ./wireguard-ui --log-level=debug --dev-ui-server=http://localhost:5000
